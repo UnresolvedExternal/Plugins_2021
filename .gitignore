@@ -17,6 +17,14 @@
 mono_crash.*
 
 # Build results
+G1 Debug/
+G1A Debug/
+G2 Debug/
+G2A Debug/
+G1 Release/
+G1A Release/
+G2 Release/
+G2A Release/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
