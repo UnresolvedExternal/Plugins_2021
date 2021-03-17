@@ -56,6 +56,7 @@ inline VarScope<T>& VarScope<T>::operator=(VarScope<T>&& right)
 	value = std::move(right.value);
 	enabled = right.enabled;
 	right.var = nullptr;
+	right.enabled = false;
 
 	return *this;
 }
