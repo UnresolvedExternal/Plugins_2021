@@ -1,0 +1,5 @@
+﻿#engine
+	#patch
+		LoadPlugins("Union_SplitDialogs.dll")
+	#/patch
+#/engine
