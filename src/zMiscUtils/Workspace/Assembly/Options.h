@@ -34,7 +34,7 @@ namespace NAMESPACE
 
 	namespace Options
 	{
-		Sub load(ZSUB(GameEvent::DefineExternals), []()
+		Sub listenOptions(ZSUB(GameEvent::Execute), []()
 			{
 				NameToDescCats.onChange += []()
 				{
@@ -66,7 +66,10 @@ namespace NAMESPACE
 				NameToDescCats.onChange += setUpdatePlayerStatusHook;
 				AppendAmountInfo.onChange += setUpdatePlayerStatusHook;
 				CorrectModelFocusNamePos.onChange += setUpdatePlayerStatusHook;
+			});
 
+		Sub load(ZSUB(GameEvent::DefineExternals), []()
+			{
 				ActiveOptionBase::LoadAll();
 			});
 	}
