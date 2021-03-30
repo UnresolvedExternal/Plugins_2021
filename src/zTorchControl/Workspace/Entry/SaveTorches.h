@@ -2,6 +2,9 @@ namespace NAMESPACE
 {
 	class TorchData : public SaveData
 	{
+	private:
+		bool playerHasTorch_LevelChange;
+
 	public:
 		TorchData(const string& name) :
 			SaveData{ name }
@@ -16,8 +19,11 @@ namespace NAMESPACE
 
 		virtual void Archive(zCArchiver& arc) override
 		{
-			arc.WriteBool("PlayerHasTorch", IsBurningTorch(COA(player, GetLeftHand())));
+			bool playerHasTorch = IsBurningTorch(COA(player, GetLeftHand()));
+			arc.WriteBool("PlayerHasTorch", playerHasTorch);
 
+			playerHasTorch_LevelChange = SaveLoadGameInfo.changeLevel && playerHasTorch;
+			
 			std::vector<oCItem*> torches;
 			torches.reserve(64u);
 
@@ -37,15 +43,18 @@ namespace NAMESPACE
 		virtual void Unarchive(zCArchiver& arc) override
 		{
 			oCWorld* world = ogame->GetGameWorld();
-			int instance = parser->GetIndex("ITLSTORCHBURNING");
+			int ItLsTorchBurning = parser->GetIndex("ITLSTORCHBURNING");
 
-			if (instance < 0)
+			if (ItLsTorchBurning < 0)
 				return;
 
 			bool playerHasTorch = arc.ReadBool("PlayerHasTorch");
 
+			if (SaveLoadGameInfo.changeLevel)
+				playerHasTorch = playerHasTorch_LevelChange;
+
 			if (player && playerHasTorch && !player->GetLeftHand())
-				if (ZOwner<oCItem> torch{ static_cast<oCItem*>(world->CreateVob(zVOB_TYPE_ITEM, instance)) })
+				if (ZOwner<oCItem> torch{ static_cast<oCItem*>(world->CreateVob(zVOB_TYPE_ITEM, ItLsTorchBurning)) })
 				{
 					world->AddVob(torch.get());
 					player->PutInSlot(NPC_NODE_LEFTHAND, torch.get(), 0);
@@ -54,7 +63,7 @@ namespace NAMESPACE
 			int count = arc.ReadInt("Count");
 
 			for (int i = 0; i < count; i++)
-				if (ZOwner<oCItem> torch{ static_cast<oCItem*>(world->CreateVob(zVOB_TYPE_ITEM, instance)) })
+				if (ZOwner<oCItem> torch{ static_cast<oCItem*>(world->CreateVob(zVOB_TYPE_ITEM, ItLsTorchBurning)) })
 				{
 					zMAT4 mat;
 					arc.ReadRaw("Matrix", &mat, sizeof(mat));
@@ -70,7 +79,7 @@ namespace NAMESPACE
 		{
 			VarScope<oCNpc*> scope;
 
-			if (!player)
+			if (SaveLoadGameInfo.changeLevel)
 				scope = AssignTemp(player, oCNpc::dontArchiveThisNpc);
 
 			SaveData::Get<TorchData>(ogame->GetGameWorld()->GetWorldName() + ".Torches").Save(GameEvent::SaveBegin);

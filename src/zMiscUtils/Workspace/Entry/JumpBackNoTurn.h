@@ -12,14 +12,10 @@ namespace NAMESPACE
 		if (!aniCtrl)
 			return _this->TurnToEnemy();
 
-		zCModel* model = _this->GetModel();
+		zCModelAniActive* hitAni = COA(_this, GetModel(), GetActiveAni(aniCtrl->hitAniID));
+		zCModelAni* protoAni = COA(hitAni, protoAni);
 
-		if (!model)
-			return _this->TurnToEnemy();
-
-		zCModelAniActive* hitAni = model->GetActiveAni(aniCtrl->hitAniID);
-
-		if (!hitAni || !hitAni->protoAni || !hitAni->protoAni->aniName.HasWord("JUMPB"))
+		if (!protoAni || !protoAni->aniName.HasWord("JUMPB"))
 			return _this->TurnToEnemy();
 	}
 
@@ -29,7 +25,6 @@ namespace NAMESPACE
 			{
 				static std::optional<int> originalValue{};
 
-				// if never set do nothing
 				if (!Options::JumpBackNoTurn && !originalValue.has_value())
 					return;
 

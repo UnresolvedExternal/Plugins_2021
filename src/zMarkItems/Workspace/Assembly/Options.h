@@ -50,9 +50,6 @@ namespace NAMESPACE
 				UnreadDocPrio.onChange += setGetStateFunc;
 			});
 
-		Sub load(ZSUB(GameEvent::DefineExternals), []()
-			{
-				ActiveOptionBase::LoadAll();
-			});
+		Sub load(ZSUB(GameEvent::DefineExternals), &ActiveOptionBase::LoadAll);
 	}
 }

@@ -13,7 +13,7 @@ namespace NAMESPACE
 
 	namespace Options
 	{
-		Sub load(ZSUB(GameEvent::DefineExternals), []()
+		Sub listenOptions(ZSUB(GameEvent::Execute), []()
 			{
 				auto enableHotkey = []()
 				{
@@ -22,8 +22,8 @@ namespace NAMESPACE
 
 				TorchHotkeyLogicalValue.onChange += enableHotkey;
 				TorchHotkeyOverride.onChange += enableHotkey;
-
-				ActiveOptionBase::LoadAll();
 			});
+
+		Sub load(ZSUB(GameEvent::DefineExternals), &ActiveOptionBase::LoadAll);
 	}
 }

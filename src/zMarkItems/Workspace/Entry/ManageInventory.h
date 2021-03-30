@@ -123,12 +123,14 @@ namespace NAMESPACE
 
 	Sub loadInventory(ZSUB(GameEvent::LoadEnd), Options::TrackNewItems, []()
 		{
-			GetInventory().Load(GameEvent::LoadEnd);
+			if (!SaveLoadGameInfo.changeLevel)
+				GetInventory().Load(GameEvent::LoadEnd);
 		});
 
 	Sub saveInventory(ZSUB(GameEvent::SaveBegin), Options::TrackNewItems, []()
 		{
-			GetInventory().Save(GameEvent::SaveBegin);
+			if (!SaveLoadGameInfo.changeLevel)
+				GetInventory().Save(GameEvent::SaveBegin);
 		});
 
 	void __fastcall Hook_oCNpcInventory_Close(oCNpcInventory*, void*);

@@ -81,12 +81,14 @@
 
 	Sub loadDocsRead(ZSUB(GameEvent::LoadEnd), Options::TrackReadDocs, []()
 		{
-			GetDocs().Load(GameEvent::LoadEnd);
+			if (!SaveLoadGameInfo.changeLevel)
+				GetDocs().Load(GameEvent::LoadEnd);
 		});
 
 	Sub saveDocsRead(ZSUB(GameEvent::SaveBegin), Options::TrackReadDocs, []()
 		{
-			GetDocs().Save(GameEvent::SaveBegin);
+			if (!SaveLoadGameInfo.changeLevel)
+				GetDocs().Save(GameEvent::SaveBegin);
 		});
 
 	oCItem* getStateEffectCalledOn = nullptr;

@@ -5,18 +5,18 @@
     <ProjectType>VC</ProjectType>
     <ProjectSubType>
     </ProjectSubType>
-    <SortOrder>1000</SortOrder>
+    <SortOrder>1</SortOrder>
     <CreateNewFolder>true</CreateNewFolder>
-    <DefaultName>C++17 Union Plugin</DefaultName>
+    <DefaultName>zPlugin</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <TemplateID>Microsoft.VisualC.Project.Windows.Dll</TemplateID>
     <Icon>__TemplateIcon.ico</Icon>
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="$projectname$.vcxproj" File="Union_ProjectTemplate.vcxproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.vcxproj.filters">Union_ProjectTemplate.vcxproj.filters</ProjectItem>
-      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.user">Union_ProjectTemplate.vcxproj.user</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="zGothicAPI.h">ZenGin\zGothicAPI.h</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="Names_G1.hpp">ZenGin\Gothic_I_Classic\Names_G1.hpp</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="ClassDeclarators_G1.cpp">ZenGin\Gothic_I_Classic\ClassDeclarators_G1.cpp</ProjectItem>
@@ -1496,7 +1496,10 @@
       <ProjectItem ReplaceParameters="false" TargetFileName="Macro.h">Workspace\Assembly\Macro.h</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="Options.h">Workspace\Assembly\Options.h</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.patch">Workspace\Assembly\Union_ProjectTemplate.patch</ProjectItem>
-      <ProjectItem ReplaceParameters="false" TargetFileName="Entry.h">Workspace\Entry\Entry.h</ProjectItem>
     </Project>
   </TemplateContent>
+  <WizardExtension>
+    <Assembly>Cpp17ItemWizard</Assembly>
+    <FullClassName>Cpp17ItemWizard.Cpp17ItemWizardImplementation</FullClassName>
+  </WizardExtension>
 </VSTemplate>

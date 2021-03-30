@@ -2768,9 +2768,6 @@
     <ClInclude Include="Workspace\Assembly\Options.h">
       <Filter>Plugin\Workspace\Assembly</Filter>
     </ClInclude>
-    <ClInclude Include="Workspace\Entry\Entry.h">
-      <Filter>Plugin\Workspace\Entry</Filter>
-    </ClInclude>
     <ClInclude Include="Workspace\Assembly\Application.h">
       <Filter>Plugin\Workspace\Assembly</Filter>
     </ClInclude>

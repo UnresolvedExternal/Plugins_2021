@@ -13,9 +13,6 @@ namespace NAMESPACE
 
 	namespace Options
 	{
-		Sub load(ZSUB(GameEvent::DefineExternals), []()
-			{
-				ActiveOptionBase::LoadAll();
-			});
+		Sub load(ZSUB(GameEvent::DefineExternals), &ActiveOptionBase::LoadAll);
 	}
 }
