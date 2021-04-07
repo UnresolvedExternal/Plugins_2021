@@ -17,25 +17,6 @@ func void Use_Bookstand_01_S1()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Это Испытание должно позволять дать оценку мудрости, силе и ловкости послушника. Следовательно, он должен пройти три испытания, каждое из которых дается ему одним из магов Высшего Совета, прежде чем ему будет позволено принять Клятву Огня и присоединиться к Соглашению Огня.");
-		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Такова воля Инноса и так тому и быть.");
-		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Высший Cовет");
-		Doc_Show(nDocID);
-		if((hero.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == FALSE))
-		{
-			KNOWS_FIRE_CONTEST = TRUE;
-			Log_CreateTopic(TOPIC_FireContest,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_FireContest,LOG_Running);
-			B_LogEntry(TOPIC_FireContest,"Будучи послушником, я имею право требовать прохождения Испытания Огнем. Каждый из трех магов Высшего Совета должен дать мне задание. Если я пройду эти испытания, я буду принят в Круг Огня.");
-		};
-	};
-};
 
-
-var int FinalDragonEquipment_Once;
 
 
