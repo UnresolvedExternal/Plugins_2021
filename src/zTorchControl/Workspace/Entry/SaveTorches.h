@@ -3,7 +3,30 @@ namespace NAMESPACE
 	class TorchData : public SaveData
 	{
 	private:
+		class TempNonArchiving
+		{
+		private:
+			oCItem* const item;
+
+		public:
+			TempNonArchiving(oCItem* item) :
+				item{ item }
+			{
+				item->dontWriteIntoArchive = true;
+				item->AddRef();
+			}
+
+			TempNonArchiving(TempNonArchiving&&) = default;
+
+			~TempNonArchiving()
+			{
+				item->dontWriteIntoArchive = false;
+				item->Release();
+			}
+		};
+
 		bool playerHasTorch_LevelChange;
+		std::vector<TempNonArchiving> nonArchivingList;
 
 	public:
 		TorchData(const string& name) :
@@ -19,10 +42,16 @@ namespace NAMESPACE
 
 		virtual void Archive(zCArchiver& arc) override
 		{
-			bool playerHasTorch = IsBurningTorch(COA(player, GetLeftHand()));
-			arc.WriteBool("PlayerHasTorch", playerHasTorch);
+			oCItem* playerTorch = COA(player, GetLeftHand(), CastTo<oCItem>());
 
-			playerHasTorch_LevelChange = SaveLoadGameInfo.changeLevel && playerHasTorch;
+			if (!IsBurningTorch(playerTorch))
+				playerTorch = nullptr;
+
+			if (playerTorch && !playerTorch->dontWriteIntoArchive)
+				nonArchivingList.emplace_back(playerTorch);
+
+			arc.WriteBool("PlayerHasTorch", playerTorch && !SaveLoadGameInfo.changeLevel);
+			playerHasTorch_LevelChange = SaveLoadGameInfo.changeLevel && playerTorch;
 			
 			std::vector<oCItem*> torches;
 			torches.reserve(64u);
@@ -35,7 +64,9 @@ namespace NAMESPACE
 
 			for (oCItem* torch : torches)
 			{
-				torch->dontWriteIntoArchive = true;
+				if (!torch->dontWriteIntoArchive)
+					nonArchivingList.emplace_back(torch);
+
 				arc.WriteRaw("Matrix", &torch->trafoObjToWorld, sizeof(torch->trafoObjToWorld));
 			}
 		}
@@ -63,17 +94,25 @@ namespace NAMESPACE
 			int count = arc.ReadInt("Count");
 
 			for (int i = 0; i < count; i++)
+			{
+				zMAT4 mat;
+				arc.ReadRaw("Matrix", &mat, sizeof(mat));
+
 				if (ZOwner<oCItem> torch{ static_cast<oCItem*>(world->CreateVob(zVOB_TYPE_ITEM, ItLsTorchBurning)) })
 				{
-					zMAT4 mat;
-					arc.ReadRaw("Matrix", &mat, sizeof(mat));
 					torch->SetTrafoObjToWorld(mat);
 					world->AddVob(torch.get());
 				}
-				else
-					break;
+			}
+		}
+
+		void RestoreArchiving()
+		{
+			nonArchivingList.clear();
 		}
 	};
+
+	TorchData* lastTorchData = nullptr;
 
 	Sub saveTorches(ZSUB(GameEvent::SaveBegin), Options::SaveTorches, []()
 		{
@@ -82,7 +121,17 @@ namespace NAMESPACE
 			if (SaveLoadGameInfo.changeLevel)
 				scope = AssignTemp(player, oCNpc::dontArchiveThisNpc);
 
-			SaveData::Get<TorchData>(ogame->GetGameWorld()->GetWorldName() + ".Torches").Save(GameEvent::SaveBegin);
+			lastTorchData = &SaveData::Get<TorchData>(ogame->GetGameWorld()->GetWorldName() + ".Torches");
+			lastTorchData->Save(GameEvent::SaveBegin);
+		});
+
+	Sub restoreArchiving(ZSUB(GameEvent::SaveEnd), Options::SaveTorches, []()
+		{
+			if (!lastTorchData)
+				return;
+				
+			lastTorchData->RestoreArchiving();
+			lastTorchData = nullptr;
 		});
 
 	Sub loadTorches(ZSUB(GameEvent::LoadEnd), Options::SaveTorches, []()

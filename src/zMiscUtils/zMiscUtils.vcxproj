@@ -660,10 +660,6 @@
     <ClInclude Include="Workspace\Assembly\Macro.h" />
     <ClInclude Include="Workspace\Assembly\Options.h" />
     <ClInclude Include="Workspace\Entry\FastFood.h" />
-    <ClInclude Include="Workspace\Entry\Header.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Workspace\Entry\JumpBackNoTurn.h" />
     <ClInclude Include="Workspace\Entry\MoveLogEntry.h" />
     <ClInclude Include="Workspace\Entry\PrintFocusName.h" />

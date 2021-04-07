@@ -7,12 +7,12 @@ namespace NAMESPACE
 		if (instance < 0)
 			return false;
 
-		return vob && vob->GetVobType() == zVOB_TYPE_ITEM && static_cast<oCItem*>(vob)->instanz == instance;
+		return vob && vob->type == zVOB_TYPE_ITEM && static_cast<oCItem*>(vob)->instanz == instance;
 	}
 
 	bool TryExchangeTorch(oCNpc* npc)
 	{
-		oCWorld* world = ogame->GetWorld()->CastTo<oCWorld>();
+		oCWorld* world = ogame->GetGameWorld();
 
 		if (!world)
 			return false;
@@ -36,7 +36,7 @@ namespace NAMESPACE
 			return false;
 
 		world->AddVob(torch);
-		npc->PutInSlot(NPC_NODE_LEFTHAND, torch, 0);
+		npc->PutInSlot(NPC_NODE_LEFTHAND, torch, false);
 		torch->Release();
 
 		return true;
@@ -54,8 +54,8 @@ namespace NAMESPACE
 			for (oCItem* torch : torches)
 			{
 				torch->AddRef();
-				ogame->GetGameWorld()->RemoveVobSubtree(torch);
-				ogame->GetGameWorld()->RemoveVob(torch);
+				ogame->world->RemoveVobSubtree(torch);
+				ogame->world->RemoveVob(torch);
 				torch->Release();
 			}
 		});
@@ -72,7 +72,7 @@ namespace NAMESPACE
 			std::vector<oCItem*> torches;
 			torches.reserve(64u);
 
-			for (oCItem* item : ogame->GetGameWorld()->voblist_items)
+			for (oCItem* item : world->voblist_items)
 			{
 				if (!IsBurningTorch(item) || item->HasFlag(ITM_FLAG_NFOCUS))
 					continue;

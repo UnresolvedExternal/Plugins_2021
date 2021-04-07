@@ -21,7 +21,7 @@ namespace NAMESPACE
 				dest[item->instanz] += item->amount;
 
 			if (oCItem* item = COA(inv.owner, interactItem))
-				if (!item->scemeName.IsEmpty())
+				if (!item->scemeName.IsEmpty() && item->homeWorld)
 					dest[item->instanz] += item->amount;
 		}
 
