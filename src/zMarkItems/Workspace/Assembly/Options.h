@@ -27,6 +27,39 @@ namespace NAMESPACE
 
 	namespace Options
 	{
+		Sub addTrivia(ZSUB(GameEvent::Execute), []()
+			{
+				TrackReadDocs.endTrivia += A"... enables (1) or disables (0) tracking a set of read documents";
+				TrackReadDocs.endTrivia += A"when disabled marking unread documents is impossible";
+				TrackReadDocs.endTrivia += A"if disabled during the game all the collected data may be lost";
+				TrackReadDocs.endTrivia += A"a document is considered read when it's onstate[0] function gets executed";
+
+				TrackNewItems.endTrivia += A"... enables (1) or disables (0) tracking the hero's inventory";
+				TrackNewItems.endTrivia += A"when disabled marking new/added items is impossible";
+				TrackNewItems.endTrivia += A"if disabled during the game all the collected data may be lost";
+				TrackNewItems.endTrivia += A"a snapshot of hero's inventory is made when the inventory gets closed while in focus";
+
+				UnreadDocPrio.startTrivia += A"If a document is unread it is marked in container cells using the following options";
+
+				UnreadDocPrio.endTrivia += A"... sets the render order of the texture or disables the feature (0)";
+				UnreadDocPrio.endTrivia += A"elements with high value are rendered last";
+				UnreadDocPrio.endTrivia += A"an item itself has zero priority, so elements with negative priority are rendered behind the item";
+
+				UnreadDocTexName.endTrivia += A"... the name of the texture unread documents will be marked by";
+				
+				UnreadDocTexPos.endTrivia += A"... position of the texture x1|y1|x2|y2";
+				UnreadDocTexPos.endTrivia += A"a container cell bounds are 0|0|8192|8192";
+				
+				UnreadDocOpacity.endTrivia += A"... sets the texture opacity [0-255]";
+
+				NewItemPrio.automaticallyAddEmptyLines = false;
+				NewItemPrio.startTrivia += A"New item instances are marked in hero's inventory using the following options";
+
+				AddItemPrio.automaticallyAddEmptyLines = false;
+				AddItemPrio.startTrivia += A"";
+				AddItemPrio.startTrivia += A"Old item instances which amount was increased are marked in hero's inventory using the following options";
+			});
+
 		Sub listenOptions(ZSUB(GameEvent::Execute), []()
 			{
 				auto setRenderHooks = []()

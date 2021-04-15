@@ -9,11 +9,11 @@ namespace NAMESPACE
 		ZOPTION(CorrectModelFocusNamePos, true);
 
 		ZOPTION(RemoveKeys, false);
-		ZOPTION(SuppressRemoveKeysKey, KeyCombo({ { KEY_LSHIFT } }));
+		ZOPTION(SuppressRemoveKeysKey, KeyCombo{ KEY_LSHIFT });
 
 		ZOPTION(FastFood, true);
-		ZOPTION(FastFoodKey, KeyCombo({ { KEY_LSHIFT } }));
-		ZOPTION(DiaHyperskipKey, KeyCombo({ { KEY_LSHIFT } }));
+		ZOPTION(FastFoodKey, KeyCombo{ KEY_LSHIFT });
+		ZOPTION(DiaHyperskipKey, KeyCombo{ KEY_LSHIFT });
 
 		ZOPTION(MoveLogEntry, true);
 
@@ -34,6 +34,46 @@ namespace NAMESPACE
 
 	namespace Options
 	{
+		Sub addTrivia(ZSUB(GameEvent::Execute), []()
+			{
+				NameToDescCats.endTrivia += A"... for items from listed categories the value of 'description' field will be used as focus name";
+				NameToDescCats.endTrivia += A"example: 'Scroll' -> 'Firebolt'";
+				NameToDescCats.endTrivia += A"all possible categories: NF|FF|MUN|ARMOR|FOOD|DOCS|POTION|LIGHT|RUNE|MAGIC";
+				NameToDescCats.endTrivia += A"leave single symbol '|' to disable the feature";
+
+				PrintZenFocus.endTrivia += A"... enables focus name drawing for objects with ZEN visals (such as burning torches)";
+				AppendAmountInfo.endTrivia += A"... adds amount info to focus names of items (example: 'Gold' -> 'Gold (x99)`)";
+				XChar.endTrivia += A"... string that is used for amount info displaying";
+				CorrectModelFocusNamePos.endTrivia += A"... corrects horizontal position of focus names";
+				
+				RemoveKeys.endTrivia += A"... opening a chest or a door forces the key removal (if the key is useless in the current world)";
+				RemoveKeys.endTrivia += A"script logic isn't checked, so the option is disabled by default to preclude quest bugs";
+
+				SuppressRemoveKeysKey.endTrivia += A"... RemoveKeys option is disabled while the key is pressed";
+				FastFood.endTrivia += A"... allows hero to repeatedly use healing items with x5 speed and no action from the player";
+				FastFoodKey.endTrivia += A"... consuming a healing item while this key is pressed triggers FastFood effect (if it is enabled)";
+				
+				DiaHyperskipKey.endTrivia += A"... skipping a dialog replique while this key is pressed incurs skipping the whole repliques chain";
+				DiaHyperskipKey.endTrivia += A"... leave single symbol '#' to disable the feature";
+
+				MoveLogEntry.endTrivia += A"... moves last updated topics in diary to the top";
+				SaveTimedOverlays.endTrivia += A"... saves hero's temporary overlays such as sprint from potion of haste";
+
+				ReapplyOverlays.endTrivia += A"... forces the listed overlays to be applied last";
+				ReapplyOverlays.endTrivia += A"the default value may help to avoid bugs with ring of haste";
+
+				SecondsPerGameHour.endTrivia += A"... sets the duration of game hour";
+
+#if ENGINE >= Engine_G2
+				PostLoadDelay.endTrivia += A"... sets post-load delay (in milliseconds, G2 & G2A only)";
+				PostLoadDelay.endTrivia += A"the engine default value is 2500";
+
+				JumpBackNoTurn.endTrivia += A"... disables automatical turning to enemy while in jump back (G2 & G2A only)";
+#endif
+
+				StrafeNoTurn.endTrivia += A"... enables straightforward strafing even if an enemy is in focus";
+			});
+
 		Sub listenOptions(ZSUB(GameEvent::Execute), []()
 			{
 				NameToDescCats.onChange += []()
