@@ -54,7 +54,7 @@ namespace NAMESPACE
 				FastFoodKey.endTrivia += A"... consuming a healing item while this key is pressed triggers FastFood effect (if it is enabled)";
 				
 				DiaHyperskipKey.endTrivia += A"... skipping a dialog replique while this key is pressed incurs skipping the whole repliques chain";
-				DiaHyperskipKey.endTrivia += A"... leave single symbol '#' to disable the feature";
+				DiaHyperskipKey.endTrivia += A"leave single symbol '#' to disable the feature";
 
 				MoveLogEntry.endTrivia += A"... moves last updated topics in diary to the top";
 				SaveTimedOverlays.endTrivia += A"... saves hero's temporary overlays such as sprint from potion of haste";
@@ -63,10 +63,13 @@ namespace NAMESPACE
 				ReapplyOverlays.endTrivia += A"the default value may help to avoid bugs with ring of haste";
 
 				SecondsPerGameHour.endTrivia += A"... sets the duration of game hour";
+				SecondsPerGameHour.endTrivia += A"the engine default is 250.0";
+				SecondsPerGameHour.endTrivia += A"non-positive value precludes the engine modification or recovers it";
 
 #if ENGINE >= Engine_G2
 				PostLoadDelay.endTrivia += A"... sets post-load delay (in milliseconds, G2 & G2A only)";
 				PostLoadDelay.endTrivia += A"the engine default value is 2500";
+				PostLoadDelay.endTrivia += A"set negative value to preclude the engine modification or to recover it";
 
 				JumpBackNoTurn.endTrivia += A"... disables automatical turning to enemy while in jump back (G2 & G2A only)";
 #endif

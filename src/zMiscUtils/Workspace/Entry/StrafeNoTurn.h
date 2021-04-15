@@ -27,7 +27,7 @@ namespace NAMESPACE
 		Unlocked<std::array<byte, 5>> right = ZENDEF(0x00614B4F, 0x00637967, 0x0063E557, 0x0069ADA7);
 
 		if (!originalCode.has_value())
-			originalCode = Code{ left, right };
+			originalCode.emplace(left, right);
 
 		if (Options::StrafeNoTurn)
 		{
@@ -38,6 +38,7 @@ namespace NAMESPACE
 		{
 			left = originalCode->left;
 			right = originalCode->right;
+			originalCode.reset();
 		}
 	}
 

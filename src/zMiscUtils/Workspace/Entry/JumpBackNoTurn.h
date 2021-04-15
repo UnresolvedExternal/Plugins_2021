@@ -23,7 +23,7 @@ namespace NAMESPACE
 		{
 			Options::JumpBackNoTurn.onChange += []()
 			{
-				static std::optional<int> originalValue{};
+				static std::optional<int> originalValue;
 
 				if (!Options::JumpBackNoTurn && !originalValue.has_value())
 					return;
@@ -37,7 +37,10 @@ namespace NAMESPACE
 				if (Options::JumpBackNoTurn)
 					relativeAddress = reinterpret_cast<int>(&oCNpc_TurnToEnemy_Hook) - (address + 4);
 				else
+				{
 					relativeAddress = originalValue.value();
+					originalValue.reset();
+				}
 			};
 		});
 }

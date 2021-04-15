@@ -18,6 +18,7 @@ namespace NAMESPACE
 		if (Options::PostLoadDelay < 0)
 		{
 			postLoadDelayPointer = originalCode.value();
+			originalCode.reset();
 			return;
 		}
 
