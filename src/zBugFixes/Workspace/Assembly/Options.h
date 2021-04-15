@@ -8,6 +8,7 @@ namespace NAMESPACE
 		ZOPTION(PackStringFix, true);
 		ZOPTION(GetAmountFix, true);
 		ZOPTION(PutInInvFix, true);
+		ZOPTION(RemoveLightFix, true);
 		ZOPTION(EventThrottling, 1);
 	}
 
@@ -25,6 +26,7 @@ namespace NAMESPACE
 				PackStringFix.endTrivia += A"... fixes inventory bugs related to packString usage (such as items disappearence)";
 				GetAmountFix.endTrivia += A"... fixes oCNpcInventory::GetAmount function, which is widely used in scripts and can return wrong results";
 				PutInInvFix.endTrivia += A"... fixes oCNpc::PutInInv function, which doesn't remove burning torches from the world properly";
+				RemoveLightFix.endTrivia += A"... updates light when zCVobLight is removed";
 				
 				EventThrottling.endTrivia += A"... throttles some types of input messages in hero's AI queue to preserve his long-lasting starvation";
 				EventThrottling.endTrivia += A"ex., changing sword to bow and bow to sword several times without ability to interrupt";

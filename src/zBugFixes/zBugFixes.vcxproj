@@ -662,6 +662,10 @@
     <ClInclude Include="Workspace\Entry\InventoryFix.h" />
     <ClInclude Include="Workspace\Entry\MidnightFix.h" />
     <ClInclude Include="Workspace\Entry\PutInInvFix.h" />
+    <ClInclude Include="Workspace\Entry\RemoveLightFix.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Workspace\Entry\ThrottleEvents.h" />
     <ClInclude Include="Workspace\Entry\UnconsciousFix.h" />
     <ClInclude Include="Workspace\Entry\WaterWeaponFix.h" />
