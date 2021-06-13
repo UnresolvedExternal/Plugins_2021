@@ -51,9 +51,9 @@ namespace NAMESPACE
 
 			if (zCModel* model = vob->visual->CastTo<zCModel>())
 			{
-				zVEC3 newPos = vob->GetPositionWorld();
-				newPos[VX] += model->bbox3DLocalFixed.GetCenter()[VX];
-				newPos[VZ] += model->bbox3DLocalFixed.GetCenter()[VZ];
+				zVEC3 offset = { model->bbox3DLocalFixed.GetCenter()[VX], 0, model->bbox3DLocalFixed.GetCenter()[VZ] };
+				offset = vob->trafoObjToWorld.Rotate(offset);
+				const zVEC3 newPos = vob->GetPositionWorld() + offset;
 
 				zMAT4 trafo = vob->trafoObjToWorld;
 				trafo.SetTranslation(newPos);
