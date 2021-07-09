@@ -659,6 +659,10 @@
     <ClInclude Include="Workspace\Assembly\Includes.h" />
     <ClInclude Include="Workspace\Assembly\Macro.h" />
     <ClInclude Include="Workspace\Assembly\Options.h" />
+    <ClInclude Include="Workspace\Entry\DayMusicFix.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Workspace\Entry\InventoryFix.h" />
     <ClInclude Include="Workspace\Entry\MidnightFix.h" />
     <ClInclude Include="Workspace\Entry\PutInInvFix.h" />

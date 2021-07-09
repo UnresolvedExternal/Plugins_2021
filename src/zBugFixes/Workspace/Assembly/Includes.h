@@ -5,3 +5,4 @@
 #include "Workspace/Entry/UnconsciousFix.h"
 #include "Workspace/Entry/MidnightFix.h"
 #include "Workspace/Entry/RemoveLightFix.h"
+#include "Workspace/Entry/DayMusicFix.h"

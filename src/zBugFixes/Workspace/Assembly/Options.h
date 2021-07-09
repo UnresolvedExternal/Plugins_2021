@@ -14,6 +14,10 @@ namespace NAMESPACE
 #endif
 
 		ZOPTION(EventThrottling, 1);
+
+#if ENGINE >= Engine_G2
+		ZOPTION(DayMusicFix, true);
+#endif
 	}
 
 	namespace Options
@@ -38,6 +42,10 @@ namespace NAMESPACE
 				EventThrottling.endTrivia += A"... throttles some types of input messages in hero's AI queue to preserve his long-lasting starvation";
 				EventThrottling.endTrivia += A"ex., changing sword to bow and bow to sword several times without ability to interrupt";
 				EventThrottling.endTrivia += A"the option value (if not zero) is number of player's commands in AI queue when throttling starts";
+
+#if ENGINE >= Engine_G2
+				DayMusicFix.endTrivia += A"... if enabled, daytime music will always start when download ends at night and there is no night theme";
+#endif
 			});
 
 		Sub load(ZSUB(GameEvent::DefineExternals), &ActiveOptionBase::LoadAll);
