@@ -1,6 +1,6 @@
 #include "Workspace/Entry/PutInInvFix.h"
 #include "Workspace/Entry/WaterWeaponFix.h"
-#include "Workspace/Entry/InventoryFix.h"
+#include "Workspace/Entry/PackStringFix.h"
 #include "Workspace/Entry/ThrottleEvents.h"
 #include "Workspace/Entry/UnconsciousFix.h"
 #include "Workspace/Entry/MidnightFix.h"

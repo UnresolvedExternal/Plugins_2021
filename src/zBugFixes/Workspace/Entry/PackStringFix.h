@@ -213,7 +213,6 @@ namespace NAMESPACE
 		const int pLen = _this->packString[invNr].Length();
 
 		std::vector<PackedItem> packedItems = Parse(pStr, pLen);
-		_this->packString[invNr].Clear();
 
 		for (const PackedItem& packedItem : packedItems)
 		{
@@ -239,7 +238,29 @@ namespace NAMESPACE
 				}
 			}
 		}
+
+		_this->packString[invNr].Clear();
 	}
 
 #endif
+
+	void __fastcall Hook_oCStealContainer_CreateList(oCStealContainer*, void*);
+	Hook<void(__thiscall*)(oCStealContainer*), ActiveOption<bool>> Ivk_oCStealContainer_CreateList(ZENFOR(0x0066A5C0, 0x00697FA0, 0x006AD2F0, 0x0070ADE0), &Hook_oCStealContainer_CreateList, HookMode::Patch, Options::PackStringFix);
+	void __fastcall Hook_oCStealContainer_CreateList(oCStealContainer* _this, void* vtable)
+	{
+		if (_this->owner)
+			_this->owner->inventory2.UnpackAllItems();
+
+		Ivk_oCStealContainer_CreateList(_this);
+	}
+
+	void __fastcall Hook_oCNpcContainer_CreateList(oCNpcContainer*, void*);
+	Hook<void(__thiscall*)(oCNpcContainer*), ActiveOption<bool>> Ivk_oCNpcContainer_CreateList(ZENFOR(0x0066AB10, 0x00698570, 0x006ADA80, 0x0070B570), &Hook_oCNpcContainer_CreateList, HookMode::Patch, Options::PackStringFix);
+	void __fastcall Hook_oCNpcContainer_CreateList(oCNpcContainer* _this, void* vtable)
+	{
+		if (_this->owner)
+			_this->owner->inventory2.UnpackAllItems();
+
+		Ivk_oCNpcContainer_CreateList(_this);
+	}
 }

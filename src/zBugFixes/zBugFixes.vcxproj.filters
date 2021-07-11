@@ -2771,7 +2771,7 @@
     <ClInclude Include="Workspace\Assembly\Application.h">
       <Filter>Plugin\Workspace\Assembly</Filter>
     </ClInclude>
-    <ClInclude Include="Workspace\Entry\InventoryFix.h">
+    <ClInclude Include="Workspace\Entry\PackStringFix.h">
       <Filter>Plugin\Workspace\Entry</Filter>
     </ClInclude>
     <ClInclude Include="Workspace\Entry\MidnightFix.h">
