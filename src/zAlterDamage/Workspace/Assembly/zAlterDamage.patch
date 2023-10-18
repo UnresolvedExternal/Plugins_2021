@@ -1,0 +1,5 @@
+﻿#engine
+	#patch
+		LoadPlugins("zAlterDamage.dll")
+	#/patch
+#/engine

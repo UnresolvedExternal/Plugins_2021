@@ -1,0 +1,5 @@
+﻿#engine
+	#patch
+		LoadPlugins("zSplitDialogs.dll")
+	#/patch
+#/engine

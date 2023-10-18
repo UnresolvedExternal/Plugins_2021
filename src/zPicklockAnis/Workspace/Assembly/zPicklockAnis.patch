@@ -1,0 +1,5 @@
+﻿#engine
+	#patch
+		LoadPlugins("zPicklockAnis.dll")
+	#/patch
+#/engine

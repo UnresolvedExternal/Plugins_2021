@@ -1,0 +1,5 @@
+﻿#engine
+	#patch
+		LoadPlugins("zFightSkillSwitcher.dll")
+	#/patch
+#/engine
