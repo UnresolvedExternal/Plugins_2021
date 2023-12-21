@@ -18,5 +18,7 @@ namespace NAMESPACE
 				self->CloseDeadNpc();
 				self->CloseInventory();
 			}
+
+			zCSkyControler::s_activeSkyControler = COA(ogame, world, activeSkyControler);
 		});
 }
