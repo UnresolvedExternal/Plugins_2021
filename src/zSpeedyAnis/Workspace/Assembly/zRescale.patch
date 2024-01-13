@@ -1,12 +1,21 @@
 #engine [G2A]
 	#patch
 		#assembler [0x0057CE88]
+			push eax
+			push ecx
+			push edx
+
 			sub esp, 4
 			fstp dword [esp] ; frameDelta
 			push esi ; activeAni
 			push ebx ; this
 			call $RescaleAni ; float __cdecl RescaleAni(zCModel* model, zCModelAniActive* ani, float frameDelta)
 			add esp, 12
+			
+			pop edx
+			pop ecx
+			pop eax
+
 			orgcode
 		#/assembler
 	#/patch

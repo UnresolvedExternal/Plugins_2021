@@ -21,7 +21,7 @@ namespace NAMESPACE
 	{
 		if (!player || model->homeVob != player || !ani->protoAni)
 			return frameDelta;
-
+	
 		auto it = cache.find(ani->protoAni);
 
 		if (it != cache.end())
@@ -42,6 +42,7 @@ namespace NAMESPACE
 			return frameDelta * e.speed;
 		}
 
+		cache.insert({ ani->protoAni, -1 });
 		return frameDelta;
 	}
 
@@ -51,6 +52,7 @@ namespace NAMESPACE
 			rescaleAni.Init();
 			rescaleAni.SetObjectName("RescaleAni");
 			rescaleAni.SetValue(reinterpret_cast<int>(&RescaleAni));
+			rescaleAni.DontRemove();
 
 			CPatch::ExecuteResource(CPlugin::GetCurrentPlugin()->GetModule(), MAKEINTRESOURCE(IDR_PATCH1), "PATCH");
 		});
