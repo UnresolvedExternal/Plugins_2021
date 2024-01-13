@@ -22,12 +22,12 @@ namespace NAMESPACE
 			std::error_code code{};
 			fs::remove_all(path, code);
 
-			cmd << "Remove directory: " << code.message().c_str() << endl;
+			cmd << "Remove directory: " << code.message() << endl;
 
 			do
 			{
 				fs::create_directory(path, code);
-				cmd << "Create directory: " << code.message().c_str() << endl;
+				cmd << "Create directory: " << code.message() << endl;
 			} while (!fs::exists(path, code));
 
 			cmd << "Directory created" << endl;
@@ -372,8 +372,9 @@ namespace NAMESPACE
 				return;
 
 			zCCSBlock* block = ogame->csMan->LibGet(number);
-			zCCSAtomicBlock* atomic = dynamic_cast<zCCSAtomicBlock*>(block->GetChild(0));
-			oCMsgConversation* message = dynamic_cast<oCMsgConversation*>(atomic->command);
+			zCCSBlockBase* blockBase = block->GetChild(0);
+			zCCSAtomicBlock* atomic = blockBase->CastTo<zCCSAtomicBlock>();
+			oCMsgConversation* message = atomic->command->CastTo<oCMsgConversation>();
 			this->text = A message->text;
 
 			return;
@@ -565,7 +566,8 @@ namespace NAMESPACE
 					replique.targetNpc = targetNpc;
 					replique.SetName(svmName);
 
-					repliques += std::move(replique);
+					if (!Options::UnvoicedOnly || !replique.IsSoundExists())
+						repliques += std::move(replique);
 				}
 			}
 		}
@@ -679,8 +681,10 @@ namespace NAMESPACE
 		}
 	};
 
-	Sub splitIt(ZSUB(Init), []()
+	extern Sub<void> splitIt;
+	Sub<void> splitIt(ZSUB(MenuLoop), []()
 		{
 			Splitter{}.Execute();
+			splitIt = {};
 		});
 }

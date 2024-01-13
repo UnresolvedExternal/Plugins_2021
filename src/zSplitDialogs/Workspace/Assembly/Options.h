@@ -2,7 +2,7 @@ namespace NAMESPACE
 {
 	namespace Options
 	{
-
+		ZOPTION(UnvoicedOnly, false);
 	}
 
 	namespace Options
