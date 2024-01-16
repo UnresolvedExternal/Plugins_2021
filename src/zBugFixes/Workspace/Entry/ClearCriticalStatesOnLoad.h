@@ -8,17 +8,19 @@ namespace NAMESPACE
 				oCInformationManager::GetInformationManager().OnTermination();
 			}
 
-			oCNpc* const self = SaveLoadGameInfo.changeLevel ? oCNpc::dontArchiveThisNpc : player;
-
-			if (self && self->inventory2.IsOpen())
+			if (player && player->inventory2.IsOpen())
 			{
-				COA(self->interactMob, CastTo<oCMobContainer>(), Close(self));
+				COA(player->interactMob, CastTo<oCMobContainer>(), Close(player));
+				COA(player->interactMob, StopInteraction(player));
 
-				self->CloseSteal();
-				self->CloseDeadNpc();
-				self->CloseInventory();
+				player->CloseSteal();
+				player->CloseDeadNpc();
+				player->CloseInventory();
 			}
 
 			zCSkyControler::s_activeSkyControler = COA(ogame, world, activeSkyControler);
+
+			if (ogame)
+				ogame->showRoutineNpc = nullptr;
 		});
 }

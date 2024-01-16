@@ -100,10 +100,7 @@ namespace NAMESPACE
 
 			for (const auto& pair : states)
 				if (states[pair.first] == ItemState::New && parser->GetSymbol(pair.first->instanz))
-				{
-					int& amount = savedInv[pair.first->instanz];
-					amount = (amount > 0) ? (amount - 1) : 0;
- 				}
+					savedInv[pair.first->instanz] = 0;
 		}
 
 		void BuildStates(oCNpcInventory& inv)
