@@ -1,5 +1,7 @@
 #include "UnionAfx.h"
 
+#pragma region dynamic cast
+
 static void WriteLogMessage(const char* message) {
     DWORD dw;
     WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), message, strlen(message), &dw, nullptr);
@@ -186,6 +188,11 @@ static bool DynamicCastApplyPatch() {
     GothicNamespaceLength = strlen(GothicNamespace);
     return true;
 }
+
+
+bool DynamicCastPatchApplied = DynamicCastApplyPatch();
+
+#pragma endregion
 
 #include <gdiplus.h>
 #pragma comment (lib,"Gdiplus.lib")
