@@ -7,7 +7,7 @@ using namespace Gdiplus;
 #include "Macro.h"
 #include "Utility/Common.h"
 #include "Application.h"
-
+/*
 #ifdef __G1
 #define NAMESPACE Gothic_I_Classic
 #define ENGINE Engine_G1
@@ -31,7 +31,7 @@ using namespace Gdiplus;
 #undef ENGINE
 #undef NAMESPACE
 #endif
-
+*/
 #ifdef __G2
 #define NAMESPACE Gothic_II_Classic
 #define ENGINE Engine_G2
