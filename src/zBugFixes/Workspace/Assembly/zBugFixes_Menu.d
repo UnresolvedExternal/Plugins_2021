@@ -58,7 +58,7 @@ prototype C_MENU_ITEM_SLIDER(C_MENU_ITEM)
 	onchgsetoptionsection = "zBugFixes";
 };
 
-instance :MenuItem_Union_Auto_MarvinHelper(C_MENU_ITEM_UNION_DEF)
+instance :MenuItem_Union_Auto_zBugFixes(C_MENU_ITEM_UNION_DEF)
 {
 	text[0] = "zBugFixes";
 	
@@ -93,45 +93,9 @@ instance MenuItem_HeadLine(C_MENU_ITEM_TEXT)
 	text[0] = "zBugFixes";
 };
 
-instance MenuItem_UnconsciousFix_Text(C_MENU_ITEM_TEXT)
-{
-	posy += 0 * DY;
-	
-	text[0] = Str_GetLocalizedString(
-		"Корректный переход в бессознание", 
-		"Correct unconsious state transition", 
-		"Correct unconsious state transition", 
-		"Correct unconsious state transition"
-	);
-};
-
-instance MenuItem_UnconsciousFix_Choice(C_MENU_ITEM_CHOICE)
-{
-	posy += 0 * DY;
-	onchgsetoption = "UnconsciousFix";
-};
-
-instance MenuItem_WaterWeaponFix_Text(C_MENU_ITEM_TEXT)
-{
-	posy += 1 * DY;
-	
-	text[0] = Str_GetLocalizedString(
-		"Корректно убирать оружие в воде", 
-		"Correctly remove weapon in water", 
-		"Correctly remove weapon in water", 
-		"Correctly remove weapon in water"
-	);
-};
-
-instance MenuItem_WaterWeaponFix_Choice(C_MENU_ITEM_CHOICE)
-{
-	posy += 1 * DY;
-	onchgsetoption = "WaterWeaponFix";
-};
-
 instance MenuItem_PackStringFix_Text(C_MENU_ITEM_TEXT)
 {
-	posy += 2 * DY;
+	posy += 0 * DY;
 	
 	text[0] = Str_GetLocalizedString(
 		"Устранить ошибки распаковки инвентаря", 
@@ -143,13 +107,13 @@ instance MenuItem_PackStringFix_Text(C_MENU_ITEM_TEXT)
 
 instance MenuItem_PackStringFix_Choice(C_MENU_ITEM_CHOICE)
 {
-	posy += 2 * DY;
+	posy += 0 * DY;
 	onchgsetoption = "PackStringFix";
 };
 
 instance MenuItem_GetAmountFix_Text(C_MENU_ITEM_TEXT)
 {
-	posy += 3 * DY;
+	posy += 1 * DY;
 	
 	text[0] = Str_GetLocalizedString(
 		"Исправить oCNpcInventory::GetAmount", 
@@ -161,13 +125,13 @@ instance MenuItem_GetAmountFix_Text(C_MENU_ITEM_TEXT)
 
 instance MenuItem_GetAmountFix_Choice(C_MENU_ITEM_CHOICE)
 {
-	posy += 3 * DY;
+	posy += 1 * DY;
 	onchgsetoption = "GetAmountFix";
 };
 
 instance MenuItem_PutInInvFix_Text(C_MENU_ITEM_TEXT)
 {
-	posy += 4 * DY;
+	posy += 2 * DY;
 
 	text[0] = Str_GetLocalizedString(
 		"Корректно удалять взятые предметы", 
@@ -179,7 +143,7 @@ instance MenuItem_PutInInvFix_Text(C_MENU_ITEM_TEXT)
 
 instance MenuItem_PutInInvFix_Choice(C_MENU_ITEM_CHOICE)
 {
-	posy += 4 * DY;
+	posy += 2 * DY;
 	onchgsetoption = "PutInInvFix";
 	
 	text[0] = Str_GetLocalizedString(
@@ -192,7 +156,7 @@ instance MenuItem_PutInInvFix_Choice(C_MENU_ITEM_CHOICE)
 
 instance MenuItem_EventThrottling_Text(C_MENU_ITEM_TEXT)
 {
-	posy += 5 * DY;
+	posy += 3 * DY;
 	
 	text[0] = Str_GetLocalizedString(
 		"Дросселировать управление игроком", 
@@ -204,7 +168,7 @@ instance MenuItem_EventThrottling_Text(C_MENU_ITEM_TEXT)
 
 instance MenuItem_EventThrottling_Choice(C_MENU_ITEM_CHOICE)
 {
-	posy += 5 * DY;
+	posy += 3 * DY;
 	onchgsetoption = "EventThrottling";
 	
 	text[0] = Str_GetLocalizedString(
@@ -217,7 +181,7 @@ instance MenuItem_EventThrottling_Choice(C_MENU_ITEM_CHOICE)
 
 instance MenuItem_EnableNpcFix_Text(C_MENU_ITEM_TEXT)
 {
-	posy += 6 * DY;
+	posy += 4 * DY;
 	
 	text[0] = Str_GetLocalizedString(
 		"Убрать вылет при вставке NPC", 
@@ -229,13 +193,13 @@ instance MenuItem_EnableNpcFix_Text(C_MENU_ITEM_TEXT)
 
 instance MenuItem_EnableNpcFix_Choice(C_MENU_ITEM_CHOICE)
 {
-	posy += 6 * DY;
+	posy += 4 * DY;
 	onchgsetoption = "EnableNpcFix";
 };
 
 instance MenuItem_ClearCriticalStatesOnLoad_Text(C_MENU_ITEM_TEXT)
 {
-	posy += 7 * DY;
+	posy += 5 * DY;
 	
 	text[0] = Str_GetLocalizedString(
 		"Исправить загрузку в инвентаре/диалоге", 
@@ -247,31 +211,8 @@ instance MenuItem_ClearCriticalStatesOnLoad_Text(C_MENU_ITEM_TEXT)
 
 instance MenuItem_ClearCriticalStatesOnLoad_Choice(C_MENU_ITEM_CHOICE)
 {
-	posy += 7 * DY;
+	posy += 5 * DY;
 	onchgsetoption = "ClearCriticalStatesOnLoad";
-};
-
-test (G2 || G2A)
-{
-
-instance MenuItem_DayMusicFix_Text(C_MENU_ITEM_TEXT)
-{
-	posy += 8 * DY;
-	
-	text[0] = Str_GetLocalizedString(
-		"Исправить музыку при загрузке ночью", 
-		"Fix music when loaded at night", 
-		"Fix music when loaded at night", 
-		"Fix music when loaded at night"
-	);
-};
-
-instance MenuItem_DayMusicFix_Choice(C_MENU_ITEM_CHOICE)
-{
-	posy += 8 * DY;
-	onchgsetoption = "DayMusicFix";
-};
-
 };
 
 instance MenuItem_Back(C_MENU_ITEM_DEF)

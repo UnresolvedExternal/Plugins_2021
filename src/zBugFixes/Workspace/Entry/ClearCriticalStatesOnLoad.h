@@ -11,7 +11,7 @@ namespace NAMESPACE
 			if (player && player->inventory2.IsOpen())
 			{
 				COA(player->interactMob, CastTo<oCMobContainer>(), Close(player));
-				COA(player->interactMob, StopInteraction(player));
+				COA(player->interactMob, InterruptInteraction(player));
 
 				player->CloseSteal();
 				player->CloseDeadNpc();

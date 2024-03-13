@@ -2780,15 +2780,6 @@
     <ClInclude Include="Workspace\Entry\ThrottleEvents.h">
       <Filter>Plugin\Workspace\Entry</Filter>
     </ClInclude>
-    <ClInclude Include="Workspace\Entry\UnconsciousFix.h">
-      <Filter>Plugin\Workspace\Entry</Filter>
-    </ClInclude>
-    <ClInclude Include="Workspace\Entry\WaterWeaponFix.h">
-      <Filter>Plugin\Workspace\Entry</Filter>
-    </ClInclude>
-    <ClInclude Include="Workspace\Entry\DayMusicFix.h">
-      <Filter>Plugin\Workspace\Entry</Filter>
-    </ClInclude>
     <ClInclude Include="Workspace\Entry\EnableNpcFix.h">
       <Filter>Plugin\Workspace\Entry</Filter>
     </ClInclude>

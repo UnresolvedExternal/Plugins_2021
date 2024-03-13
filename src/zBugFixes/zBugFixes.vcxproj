@@ -663,10 +663,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Workspace\Entry\DayMusicFix.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Workspace\Entry\EnableNpcFix.h">
       <SubType>
       </SubType>
@@ -674,8 +670,6 @@
     <ClInclude Include="Workspace\Entry\PackStringFix.h" />
     <ClInclude Include="Workspace\Entry\PutInInvFix.h" />
     <ClInclude Include="Workspace\Entry\ThrottleEvents.h" />
-    <ClInclude Include="Workspace\Entry\UnconsciousFix.h" />
-    <ClInclude Include="Workspace\Entry\WaterWeaponFix.h" />
     <ClInclude Include="ZenGin\Gothic_II_Addon\API\oAiHuman.h" />
     <ClInclude Include="ZenGin\Gothic_II_Addon\API\oAiShoot.h" />
     <ClInclude Include="ZenGin\Gothic_II_Addon\API\oAniCtrl.h" />
