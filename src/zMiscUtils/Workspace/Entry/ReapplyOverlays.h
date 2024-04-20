@@ -38,13 +38,26 @@ namespace NAMESPACE
 		}
 	}
 
+	bool Compare(const zCArray<zSTRING>& left, const zCArray<zSTRING>& right)
+	{
+		if (left.GetNum() != right.GetNum())
+			return false;
+
+		for (int i = 0; i < left.GetNum(); i++)
+			if (!left[i].Compare(right[i]))
+				return false;
+
+		return true;
+	}
+
 	int __fastcall Hook_oCNpc_ApplyOverlay_Reapply(oCNpc*, void*, zSTRING const&);
 	Hook<int(__thiscall*)(oCNpc*, zSTRING const&), ActiveOption<VectorOption<string>>> Ivk_oCNpc_ApplyOverlay_Reapply(ZENFOR(0x0068AD40, 0x006BB2D0, 0x006CF0C0, 0x0072D2C0), &Hook_oCNpc_ApplyOverlay_Reapply, HookMode::Patch, Options::ReapplyOverlays);
 	int __fastcall Hook_oCNpc_ApplyOverlay_Reapply(oCNpc* _this, void* vtable, zSTRING const& a0)
 	{
+		auto activeOverlays = _this->activeOverlays;
 		int result = Ivk_oCNpc_ApplyOverlay_Reapply(_this, a0);
 
-		if (result)
+		if (result && !Compare(activeOverlays, _this->activeOverlays))
 			ReapplyOverlays(_this);
 
 		return result;
