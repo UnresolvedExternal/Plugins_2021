@@ -215,6 +215,24 @@ instance MenuItem_ClearCriticalStatesOnLoad_Choice(C_MENU_ITEM_CHOICE)
 	onchgsetoption = "ClearCriticalStatesOnLoad";
 };
 
+instance MenuItem_InfoLeakFix_Text(C_MENU_ITEM_TEXT)
+{
+	posy += 6 * DY;
+	
+	text[0] = Str_GetLocalizedString(
+		"Исправить утечку памяти диалогов", 
+		"Fix dialog memory leak", 
+		"Fix dialog memory leak", 
+		"Fix dialog memory leak"
+	);
+};
+
+instance MenuItem_InfoLeakFix_Choice(C_MENU_ITEM_CHOICE)
+{
+	posy += 6 * DY;
+	onchgsetoption = "InfoLeakFix";
+};
+
 instance MenuItem_Back(C_MENU_ITEM_DEF)
 {
 	Union_MenuItem_Back();
