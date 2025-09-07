@@ -10,6 +10,7 @@ namespace NAMESPACE
 
 		ZOPTION(EnableNpcFix, true);
 		ZOPTION(ClearCriticalStatesOnLoad, true);
+		ZOPTION(InfoLeakFix, true);
 
 		ActiveValue<bool> enablePutInInvFix;
 	}
@@ -32,6 +33,8 @@ namespace NAMESPACE
 
 				EnableNpcFix.endTrivia += A"... fixes a crash due to the uninitialized world property of the AI object of the activated NPC";
 				ClearCriticalStatesOnLoad.endTrivia += A"... fixes bugs when loading starts while talking or looting";
+
+				InfoLeakFix.endTrivia += A"... fixes oCInfo memory leak";
 			});
 
 		Sub load(ZSUB(GameEvent::DefineExternals), []()

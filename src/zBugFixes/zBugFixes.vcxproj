@@ -667,6 +667,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Workspace\Entry\InfoLeakFix.h" />
     <ClInclude Include="Workspace\Entry\PackStringFix.h" />
     <ClInclude Include="Workspace\Entry\PutInInvFix.h" />
     <ClInclude Include="Workspace\Entry\ThrottleEvents.h" />

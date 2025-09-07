@@ -3,3 +3,4 @@
 #include "Workspace/Entry/ThrottleEvents.h"
 #include "Workspace/Entry/EnableNpcFix.h"
 #include "Workspace/Entry/ClearCriticalStatesOnLoad.h"
+#include "Workspace/Entry/InfoLeakFix.h"
